@@ -847,19 +847,14 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ## 📞 Contact
 
 ### Project Maintainer
-- **Name**: Your Name
-- **Email**: your.email@example.com
-- **GitHub**: [@yourusername](https://github.com/yourusername)
+- **Name**: Kotha Dhakshin
+- **Email**: kothadhakshin123@gmail.com
+- **GitHub**: [🌚](https://github.com/Dhakshin2007)
 
 ### Community
-- **Discord**: [Join our server](https://discord.gg/yourserver)
-- **Twitter**: [@CropTechSystem](https://twitter.com/yourhandle)
-- **Website**: [cropsuggest.io](https://yourwebsite.com)
-
-### Support
-- 📧 Email: support@cropsuggest.io
-- 🐛 Bug Reports: [GitHub Issues](https://github.com/yourusername/crop-suggestion-system/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/crop-suggestion-system/discussions)
+- **Discord**: [Join our server](https://discord.gg/)
+- **Twitter**: [@Twitter](https://twitter.com/)
+- **Website**: [cropsuggest.io](https://dhakshin-portfolio.vercel.app)
 
 ---
 
