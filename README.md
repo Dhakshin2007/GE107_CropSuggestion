@@ -889,7 +889,7 @@ Special thanks to:
 
 ## 🌟 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/crop-suggestion-system&type=Date)](https://star-history.com/#yourusername/crop-suggestion-system&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Dhakshin2007/GE107_CropSuggestion&type=Date)](https://star-history.com/#Dhakshin2007/GE107_CropSuggestion&Date)
 
 ---
 
