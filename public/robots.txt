@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ge-107-crop-suggestion.vercel.app/sitemap.xml
+
+# polite instructions for bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: *
+Crawl-delay: 5
