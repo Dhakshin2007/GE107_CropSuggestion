@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 28.8, "left": 14.44, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -95.7,
+      "left": 119.4,
+      "attrs": { "temperature": "15", "humidity": "55" }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -54.4,
+      "left": -191.2,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 284.8,
+      "left": -80.8,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": 37.1, "left": -153.8, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "h-115.2", "v38.4" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v240", "h-172.8", "v-76.8" ] ],
+    [ "dht1:SDA", "esp:15", "green", [ "v163.2", "h0.1", "v9.6" ] ],
+    [ "ldr1:AO", "esp:34", "green", [ "h19.2", "v104.9" ] ],
+    [ "ldr1:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "ldr1:GND", "esp:GND.1", "black", [ "h9.6", "v210.8" ] ],
+    [ "lcd1:SDA", "esp:21", "green", [ "h-28.8", "v-67", "h240", "v-163.2" ] ],
+    [ "lcd1:SCL", "esp:22", "green", [ "h-19.2", "v-66.9", "h220.8", "v-201.6" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "h-9.6", "v0.1" ] ],
+    [ "lcd1:GND", "esp:GND.1", "black", [ "h-48", "v-134.4" ] ],
+    [ "pot1:VCC", "esp:3V3", "red", [ "v19.2", "h47.2", "v-67.2" ] ],
+    [ "pot1:GND", "esp:GND.1", "black", [ "v76.8" ] ],
+    [ "pot1:SIG", "esp:35", "green", [ "v28.8", "h114.8", "v-28.8" ] ]
+  ],
+  "dependencies": {}
+}

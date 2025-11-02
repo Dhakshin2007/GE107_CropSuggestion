@@ -1,0 +1,7 @@
+{
+  "name": "GE107_Crop_Suggestion",
+  "description": "An AI-enabled crop suggestion system that provides real-time recommendations to farmers based on soil sensors, climate data, and weather forecasts, featuring an intuitive, visually rich interface.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
