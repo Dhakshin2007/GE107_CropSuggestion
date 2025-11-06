@@ -20,14 +20,14 @@ const contributors: Contributor[] = [
     {
         name: 'Aditya Verma',
         role: 'Model Training & Presentation Making',
-        imageUrl: 'https://i.postimg.cc/qRrLG3DK/Whats-App-Image-2025-11-06-at-21-13-43-4ad8db2c.jpg',
+        imageUrl: './public/Verma.jpg',
         linkedinUrl: 'https://www.linkedin.com/in/aditya-verma-a699ba337/',
         githubUrl: 'https://github.com/Aditya-Verma251',
     },
     {
         name: 'Harsh Yadav',
         role: 'UX Developer & Documentation',
-        imageUrl: 'https://i.postimg.cc/wMvDWchS/Whats-App-Image-2025-11-06-at-21-18-14-711113f1.jpg',
+        imageUrl: '/public/Harsh.jpg',
         linkedinUrl: '#',
         githubUrl: 'https://github.com/hoaorosoh',
     },
@@ -41,7 +41,7 @@ const contributors: Contributor[] = [
         {
         name: 'J Yeswanth Teja',
         role: 'Hardware Assembling & Project Assist',
-        imageUrl: 'https://i.postimg.cc/X7Pkzh1s/Whats-App-Image-2025-11-06-at-21-24-45-57ad881b.jpg',
+        imageUrl: '/public/Yeswanth.jpg',
         linkedinUrl: 'https://www.linkedin.com/in/yeswanth-teja/',
         githubUrl: 'https://github.com/YeswanthTejaJakka',
     },

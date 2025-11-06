@@ -27,7 +27,7 @@ const contributors: Contributor[] = [
     {
         name: 'Harsh Yadav',
         role: 'UX Developer & Documentation',
-        imageUrl: 'https://i.postimg.cc/wMvDWchS/Whats-App-Image-2025-11-06-at-21-18-14-711113f1.jpg',
+        imageUrl: '/public/Harsh.jpg',
         linkedinUrl: '#',
         githubUrl: 'https://github.com/hoaorosoh',
     },
