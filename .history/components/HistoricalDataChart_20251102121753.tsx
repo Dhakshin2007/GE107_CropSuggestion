@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { FarmData } from '../types';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -14,7 +13,7 @@ const HistoricalDataChart: React.FC<{ data: FarmData[] }> = ({ data }) => {
   return (
     <div className="bg-white/50 backdrop-blur-lg rounded-2xl p-6 shadow-md border border-white/30">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Live Sensor Trends</h2>
-      <div className="w-full h-[350px] md:h-[450px]">
+      <div className="w-full h-[450px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={formattedData}

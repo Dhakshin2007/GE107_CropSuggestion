@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import type { LucideProps } from 'lucide-react';
@@ -26,7 +25,7 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, Icon, color = 'text-g
         <Icon className={`${color} h-6 w-6`} />
       </div>
       <div className="flex items-end gap-x-2">
-        <p className={`text-3xl sm:text-4xl font-bold ${color}`}>
+        <p className={`text-4xl font-bold ${color}`}>
           {typeof value === 'number' ? <CountUp value={value} decimals={decimals} /> : value}
           {suffix}
         </p>

@@ -1,4 +1,3 @@
-
 export interface WeatherData {
   latitude: number;
   longitude: number;
@@ -42,25 +41,4 @@ export interface CropRecommendationData {
     'Market Value': number;
     'Pest Resistance': number;
   };
-}
-
-export interface ChatMessage {
-  role: 'user' | 'model';
-  text: string;
-}
-
-export interface Alert {
-  id: string;
-  type: 'warning' | 'info' | 'danger';
-  title: string;
-  message: string;
-}
-
-export interface Contributor {
-  name: string;
-  role: string;
-  imageUrl: string;
-  linkedinUrl?: string;
-  githubUrl?: string;
-  portfolioUrl?: string;
 }

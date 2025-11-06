@@ -77,10 +77,6 @@ export const createChat = (): Chat => {
     model: "gemini-2.5-flash",
     config: {
       systemInstruction: `You are 'Agri-AI', a helpful and friendly agricultural assistant for a farmer in Punjab, India. Your goal is to answer questions based on the real-time sensor data and crop recommendations provided in the context of each message.
-      
-      **Multilingual Support:** You are fluent in English, Hindi, and Telugu. You MUST respond in the same language the user uses. For example, if the user asks a question in Telugu, you must provide the answer in Telugu.
-
-      **Core Instructions:**
       - Be concise and clear.
       - Use simple, easy-to-understand language.
       - If a question is outside the scope of farming or the provided data, politely state that you can't answer it.

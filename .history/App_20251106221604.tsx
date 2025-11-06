@@ -17,8 +17,8 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import AIChatAgent from './components/AIChatAgent';
 import type { Chat } from '@google/genai';
-import ProactiveAlerts from './components/ProactiveAlerts.tsx';
-import CustomCursor from './components/CustomCursor.tsx';
+import ProactiveAlerts from './components/ProactiveAlerts';
+import CustomCursor from './components/CustomCursor';
 
 // Updated location to IIT Ropar
 const DEVICE_LOCATION = {

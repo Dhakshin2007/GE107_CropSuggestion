@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AlertTriangle, Loader, Bot } from 'lucide-react';
@@ -17,8 +18,6 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import AIChatAgent from './components/AIChatAgent';
 import type { Chat } from '@google/genai';
-import ProactiveAlerts from './components/ProactiveAlerts.tsx';
-import CustomCursor from './components/CustomCursor.tsx';
 
 // Updated location to IIT Ropar
 const DEVICE_LOCATION = {
@@ -270,7 +269,6 @@ const App: React.FC = () => {
 
   return (
     <div className={`min-h-screen w-full bg-gradient-to-br ${backgroundStyle} transition-colors duration-1000`}>
-      <CustomCursor />
       <AnimatePresence>
         {loading && (
           <motion.div
@@ -306,11 +304,6 @@ const App: React.FC = () => {
                 locationName={DEVICE_LOCATION.name} 
                 onExportPDF={handleExportPDF}
                 isExporting={isExporting}
-              />
-              <ProactiveAlerts
-                farmData={farmData}
-                weatherData={weatherData}
-                historicalData={historicalData}
               />
               <div id="weather-hero-export">
                 <WeatherHero weatherData={weatherData} />

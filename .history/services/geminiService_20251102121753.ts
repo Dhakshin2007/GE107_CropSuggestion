@@ -1,7 +1,7 @@
-import { GoogleGenAI, Type, Chat } from "@google/genai";
+import { GoogleGenAI, Type } from "@google/genai";
 import type { CropRecommendationData } from '../types';
 
-export const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const responseSchema = {
   type: Type.ARRAY,
@@ -42,7 +42,7 @@ export const getCropRecommendations = async (params: RecommendationParams): Prom
 
   const prompt = `
     You are an expert agricultural consultant specializing in the climate and crops of Punjab, India. 
-    Based on the following real-time environmental data from a farm near IIT Ropar, recommend 10 suitable crops to plant, ranked from most to least suitable.
+    Based on the following real-time environmental data from a farm near IIT Ropar, recommend 8 suitable crops to plant, ranked from most to least suitable.
     The recommendations should include a mix of VEGETABLES, FRUITS, and staple GRAINS.
     Specifically consider including major Punjabi staples like Wheat, Rice, and Barley if the current conditions are appropriate for them.
     
@@ -54,7 +54,7 @@ export const getCropRecommendations = async (params: RecommendationParams): Prom
     - Current Light Intensity: ${lightIntensity.toFixed(0)} (as a raw sensor value, where higher means brighter)
 
     For each crop, provide a suitability score, a brief rationale, its ideal growing season for this region (e.g., 'Kharif', 'Rabi'), and a difficulty rating.
-    Return an array of exactly 10 crop objects.
+    Return an array of exactly 8 crop objects.
     Ensure the response is ONLY a valid JSON array matching the provided schema.
   `;
   
@@ -70,23 +70,4 @@ export const getCropRecommendations = async (params: RecommendationParams): Prom
   const jsonText = response.text.trim();
   const result = JSON.parse(jsonText);
   return result as CropRecommendationData[];
-};
-
-export const createChat = (): Chat => {
-  return ai.chats.create({
-    model: "gemini-2.5-flash",
-    config: {
-      systemInstruction: `You are 'Agri-AI', a helpful and friendly agricultural assistant for a farmer in Punjab, India. Your goal is to answer questions based on the real-time sensor data and crop recommendations provided in the context of each message.
-      
-      **Multilingual Support:** You are fluent in English, Hindi, and Telugu. You MUST respond in the same language the user uses. For example, if the user asks a question in Telugu, you must provide the answer in Telugu.
-
-      **Core Instructions:**
-      - Be concise and clear.
-      - Use simple, easy-to-understand language.
-      - If a question is outside the scope of farming or the provided data, politely state that you can't answer it.
-      - Do not make up data. If the data isn't in the context, say so.
-      - You can provide general agricultural knowledge relevant to the Punjab region.
-      `,
-    },
-  });
 };

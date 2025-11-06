@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AlertTriangle, Loader, Bot } from 'lucide-react';
-import type { WeatherData, FarmData, CropRecommendationData, ChatMessage } from './types';
+import { AlertTriangle, Loader } from 'lucide-react';
+import type { WeatherData, FarmData, CropRecommendationData } from './types';
 import { getWeatherData } from './services/weatherService';
-import { getCropRecommendations, createChat } from './services/geminiService';
+import { getCropRecommendations } from './services/geminiService';
 import { getLatestFarmData, getHistoricalFarmData } from './services/supabaseService';
 import WeatherHero from './components/WeatherHero';
 import QuickStatsGrid from './components/QuickStatsGrid';
@@ -15,16 +15,12 @@ import EmptyState from './components/EmptyState';
 import Footer from './components/Footer';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import AIChatAgent from './components/AIChatAgent';
-import type { Chat } from '@google/genai';
-import ProactiveAlerts from './components/ProactiveAlerts.tsx';
-import CustomCursor from './components/CustomCursor.tsx';
 
 // Updated location to IIT Ropar
 const DEVICE_LOCATION = {
   latitude: 30.8963, // IIT Ropar
   longitude: 76.5413,
-  name: "IIT Ropar 🎓"
+  name: "IIT Ropar"
 };
 
 const App: React.FC = () => {
@@ -40,60 +36,6 @@ const App: React.FC = () => {
   const isInitialMount = useRef(true);
   const recommendationUpdateCounter = useRef(0);
   const [isExporting, setIsExporting] = useState<boolean>(false);
-
-  // AI Chat Agent State
-  const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
-  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
-  const [isAgentLoading, setIsAgentLoading] = useState<boolean>(false);
-  const [chatSession, setChatSession] = useState<Chat | null>(null);
-
-  // Initialize Chat Session
-  useEffect(() => {
-    const session = createChat();
-    setChatSession(session);
-    setChatMessages([
-      { role: 'model', text: "Hi! I'm your Agri-AI assistant. Ask me anything about your farm data or crop recommendations!" }
-    ]);
-  }, []);
-
-  const handleSendMessage = async (message: string) => {
-    if (!chatSession || !message.trim()) return;
-
-    const userMessage: ChatMessage = { role: 'user', text: message };
-    setChatMessages(prev => [...prev, userMessage]);
-    setIsAgentLoading(true);
-
-    try {
-        const contextData = {
-            currentFarmData: farmData,
-            sevenDayWeatherForecast: weatherData,
-            currentCropRecommendations: recommendations,
-        };
-        const contextString = `CONTEXT: ${JSON.stringify(contextData)}`;
-        const fullPrompt = `${contextString}\n\nUSER QUESTION: ${message}`;
-        
-        const responseStream = await chatSession.sendMessageStream({ message: fullPrompt });
-
-        let fullResponse = "";
-        setChatMessages(prev => [...prev, { role: 'model', text: '' }]);
-
-        for await (const chunk of responseStream) {
-            fullResponse += chunk.text;
-            setChatMessages(prev => {
-                const newMessages = [...prev];
-                newMessages[newMessages.length - 1].text = fullResponse;
-                return newMessages;
-            });
-        }
-    } catch (err) {
-        console.error("AI agent failed to respond:", err);
-        const errorMessage: ChatMessage = { role: 'model', text: "Sorry, I'm having trouble connecting to my brain right now. Please try again in a moment." };
-        setChatMessages(prev => [...prev, errorMessage]);
-    } finally {
-        setIsAgentLoading(false);
-    }
-};
-
 
   const handleExportPDF = async () => {
     setIsExporting(true);
@@ -270,7 +212,6 @@ const App: React.FC = () => {
 
   return (
     <div className={`min-h-screen w-full bg-gradient-to-br ${backgroundStyle} transition-colors duration-1000`}>
-      <CustomCursor />
       <AnimatePresence>
         {loading && (
           <motion.div
@@ -285,7 +226,7 @@ const App: React.FC = () => {
         )}
       </AnimatePresence>
 
-      <main className="container mx-auto p-3 sm:p-4 md:p-6 lg:p-8 space-y-8">
+      <main className="container mx-auto p-4 md:p-6 lg:p-8 space-y-8">
         {error && (
           <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md shadow-lg flex items-center">
             <AlertTriangle className="h-6 w-6 mr-3" />
@@ -306,11 +247,6 @@ const App: React.FC = () => {
                 locationName={DEVICE_LOCATION.name} 
                 onExportPDF={handleExportPDF}
                 isExporting={isExporting}
-              />
-              <ProactiveAlerts
-                farmData={farmData}
-                weatherData={weatherData}
-                historicalData={historicalData}
               />
               <div id="weather-hero-export">
                 <WeatherHero weatherData={weatherData} />
@@ -346,31 +282,6 @@ const App: React.FC = () => {
           )}
         </AnimatePresence>
       </main>
-
-      <AnimatePresence>
-        {!loading && (
-          <motion.button
-            onClick={() => setIsChatOpen(true)}
-            className="fixed bottom-6 right-6 bg-indigo-600 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center z-40"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 1, type: 'spring' }}
-            aria-label="Open AI Chat Assistant"
-          >
-            <Bot size={32} />
-          </motion.button>
-        )}
-      </AnimatePresence>
-      
-      <AIChatAgent
-        isOpen={isChatOpen}
-        onClose={() => setIsChatOpen(false)}
-        messages={chatMessages}
-        onSendMessage={handleSendMessage}
-        isLoading={isAgentLoading}
-      />
     </div>
   );
 };

@@ -17,14 +17,12 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import AIChatAgent from './components/AIChatAgent';
 import type { Chat } from '@google/genai';
-import ProactiveAlerts from './components/ProactiveAlerts.tsx';
-import CustomCursor from './components/CustomCursor.tsx';
 
 // Updated location to IIT Ropar
 const DEVICE_LOCATION = {
   latitude: 30.8963, // IIT Ropar
   longitude: 76.5413,
-  name: "IIT Ropar 🎓"
+  name: "IIT Ropar "
 };
 
 const App: React.FC = () => {
@@ -270,7 +268,6 @@ const App: React.FC = () => {
 
   return (
     <div className={`min-h-screen w-full bg-gradient-to-br ${backgroundStyle} transition-colors duration-1000`}>
-      <CustomCursor />
       <AnimatePresence>
         {loading && (
           <motion.div
@@ -285,7 +282,7 @@ const App: React.FC = () => {
         )}
       </AnimatePresence>
 
-      <main className="container mx-auto p-3 sm:p-4 md:p-6 lg:p-8 space-y-8">
+      <main className="container mx-auto p-4 md:p-6 lg:p-8 space-y-8">
         {error && (
           <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md shadow-lg flex items-center">
             <AlertTriangle className="h-6 w-6 mr-3" />
@@ -306,11 +303,6 @@ const App: React.FC = () => {
                 locationName={DEVICE_LOCATION.name} 
                 onExportPDF={handleExportPDF}
                 isExporting={isExporting}
-              />
-              <ProactiveAlerts
-                farmData={farmData}
-                weatherData={weatherData}
-                historicalData={historicalData}
               />
               <div id="weather-hero-export">
                 <WeatherHero weatherData={weatherData} />
