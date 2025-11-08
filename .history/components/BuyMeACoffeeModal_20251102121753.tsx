@@ -11,6 +11,7 @@ const BuyMeACoffeeModal: React.FC<BuyMeACoffeeModalProps> = ({ show, onClose }) 
     
     // IMPORTANT: Replace this placeholder with the actual URL of your QR code image.
     const qrCodeImageUrl = 'https://i.postimg.cc/W1KTNfy3/Whats-App-Image-2025-11-02-at-17-42-57-96509e4d.jpg';
+    const upiId = 'dhakshinkotha2007@okaxis';
 
     return (
         <AnimatePresence>
@@ -45,16 +46,10 @@ const BuyMeACoffeeModal: React.FC<BuyMeACoffeeModalProps> = ({ show, onClose }) 
                             className="w-48 h-48 mx-auto rounded-lg border-4 border-gray-100"
                         />
                         
-                        <p className="text-gray-600 mt-4">Or sponsor on GitHub:</p>
-                        <div className="mt-2 flex justify-center">
-                            <iframe 
-                                src="https://github.com/sponsors/Dhakshin2007/button" 
-                                title="Sponsor Dhakshin2007" 
-                                height="32" 
-                                width="114" 
-                                style={{ border: 0, borderRadius: '6px' }}>
-                            </iframe>
-                        </div>
+                        <p className="text-gray-600 mt-4">Or use UPI ID:</p>
+                        <p className="font-mono text-lg font-semibold bg-gray-100 text-gray-800 px-4 py-2 rounded-lg mt-2 inline-block">
+                            {upiId}
+                        </p>
 
                         <button
                             onClick={onClose}
