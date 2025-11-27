@@ -11,8 +11,8 @@
 const int AIR_VALUE = 3800;
 const int WATER_VALUE = 1200;
 
-const char* WIFI_SSID = "IITRPR";
-const char* WIFI_PASS = "V#6qF?pyM!bQ$%NX";
+const char* WIFI_SSID = "IIT";
+const char* WIFI_PASS = "44zMf3QqdU&KC3Mv";
 
 // ---- Supabase Configuration ----
 const char* SUPABASE_URL = "https://fwnsxlojxqvdwaseomhs.supabase.co/rest/v1/environment_data";
